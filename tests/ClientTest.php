@@ -3,7 +3,6 @@
 namespace App\Tests;
 
 use App\Entity\Client;
-use App\Entity\Customer;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -11,43 +10,40 @@ class ClientTest extends TestCase
     public function testIsTrue()
     {
         $client = new Client();
-        $customer = new Customer();
 
-        $customer->setFisrtname('Kevin');
-        $customer->setLastname('Dumont');
-        $customer->setMail('contact@kevindumont.fr');
-        $customer->setClient($client);
+        $client->setCompanyName('Micromania');
+        $client->setMail('contact@micromania.fr');
+        $client->setPassword('123456');
 
 
-        $this->assertTrue($customer->getFisrtname() === 'Kevin');
-        $this->assertTrue($customer->getLastname() === 'Dumont');
-        $this->assertTrue($customer->getMail() === 'contact@kevindumont.fr');
-        $this->assertSame($client, $customer->getClient());
+        $this->assertTrue($client->getCompanyName() === 'Micromania');
+        $this->assertTrue($client->getMail() === 'contact@micromania.fr');
+        $this->assertTrue($client->getPassword() === '123456');
     }
 
     public function testIsFalse()
     {
         $client = new Client();
-        $customer = new Customer();
 
-        $customer->setFisrtname('Kevin');
-        $customer->setLastname('Dumont');
-        $customer->setMail('contact@kevindumont.fr');
-        $customer->setClient($client);
+        $client->setCompanyName('Micromania');
+        $client->setMail('contact@micromania.fr');
+        $client->setPassword('123456');
 
-        $this->assertFalse($customer->getFisrtname() === 'Alan');
-        $this->assertFalse($customer->getLastname() === 'Lepetit');
-        $this->assertFalse($customer->getMail() === 'contact@alanlepetit.fr');
-        $this->assertNotSame(new Client(), $customer->getClient());
+        $this->assertFalse($client->getCompanyName() === 'Playstation');
+        $this->assertFalse($client->getMail() === 'contact@playstation.fr');
+        $this->assertFalse($client->getPassword() === '1234567');
     }
 
     public function testIsEmpty()
     {
-        $customer = new Customer();
+        $client = new Client();
 
-        $this->assertEmpty($customer->getFisrtname());
-        $this->assertEmpty($customer->getLastname());
-        $this->assertEmpty($customer->getMail());
-        $this->assertEmpty($customer->getClient());
+        $client->setCompanyName('');
+        $client->setMail('');
+        $client->setPassword('');
+
+        $this->assertEmpty($client->getCompanyName());
+        $this->assertEmpty($client->getMail());
+        $this->assertEmpty($client->getPassword());
     }
 }
