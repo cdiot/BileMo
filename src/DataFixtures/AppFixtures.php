@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Client;
+use App\Entity\Customer;
 use App\Entity\Phone;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -27,6 +28,17 @@ class AppFixtures extends Fixture
         $client->setMail('contact@micromania.fr');
         $client->setPassword('123456');
         $manager->persist($client);
+
+        // create 6 Customer!
+        for ($i = 1; $i < 6; $i++) {
+            $customer = new Customer();
+            $customer->setFisrtname('Kevin' . $i);
+            $customer->setLastname('Dumont' . $i);
+            $customer->setMail('contact@kevindumont' . $i . '.fr');
+            $customer->setClient($client);
+            $manager->persist($customer);
+        }
+
         $manager->flush();
     }
 }
