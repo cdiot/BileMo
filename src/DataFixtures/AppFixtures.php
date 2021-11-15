@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
             $phone->setBrand('Iphone');
             $phone->setModel('Pro');
             $phone->setPrice(999.99);
-            $phone->setDescription('Le top du top toujours plus chère pour une qualité égalé.');
+            $phone->setDescription('Le top toujours plus chère pour une qualité au rendez vous.');
             $manager->persist($phone);
         }
 
@@ -36,6 +36,10 @@ class AppFixtures extends Fixture
             $customer->setLastname('Dumont' . $i);
             $customer->setMail('contact@kevindumont' . $i . '.fr');
             $customer->setClient($client);
+            $customer->setCity('Paris');
+            $customer->setPhone(060334567 . $i);
+            $customer->setAddress($i . 'rue de lille');
+            $customer->setZipcode('59000');
             $manager->persist($customer);
         }
 
