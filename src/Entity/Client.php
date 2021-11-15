@@ -2,13 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
+ * @ApiResource(
+ *      itemOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                  "groups"={"client_details_read"}
+ *              }
+ *          }  
+ *      }
+ * )
  */
 class Client
 {
@@ -16,16 +27,19 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"client_details_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"client_details_read"})
      */
     private $companyName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"client_details_read"})
      */
     private $mail;
 
@@ -36,6 +50,7 @@ class Client
 
     /**
      * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="client")
+     * @Groups({"client_details_read"})
      */
     private $customers;
 
