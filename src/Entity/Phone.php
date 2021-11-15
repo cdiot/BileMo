@@ -2,11 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
+ * @ApiResource(
+ *      itemOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                  "groups"={"phone_details_read"}
+ *              }
+ *          }  
+ *      },
+ *      collectionOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                  "groups"={"phone_read"}
+ *              }
+ *          },
+ *      }
+ * )
  */
 class Phone
 {
@@ -14,31 +32,37 @@ class Phone
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"phone_read","phone_details_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"phone_read","phone_details_read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"phone_read","phone_details_read"})
      */
     private $brand;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"phone_read","phone_details_read"})
      */
     private $model;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"phone_read","phone_details_read"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"phone_details_read"})
      */
     private $description;
 
