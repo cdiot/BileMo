@@ -2,11 +2,34 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
+ * @ApiResource(
+ *      itemOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                  "groups"={"customer_details_read"}
+ *              }
+ *          },
+ *          "put",
+ *          "patch",
+ *          "delete" 
+ *      },
+ *      collectionOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                  "groups"={"customer_read"}
+ *              }
+ *          },
+ *          "post"       
+ *      }
+ * )
  */
 class Customer
 {
@@ -14,28 +37,57 @@ class Customer
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"customer_read","customer_details_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customer_read","customer_details_read"})
      */
     private $fisrtname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customer_read","customer_details_read"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"customer_read","customer_details_read"})
      */
     private $mail;
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="customers")
+     * @Groups({"customer_read","customer_details_read"})
      */
     private $client;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"customer_details_read"})
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"customer_details_read"})
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"customer_details_read"})
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"customer_details_read"})
+     */
+    private $zipcode;
 
     public function getId(): ?int
     {
@@ -86,6 +138,54 @@ class Customer
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(int $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?int
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(int $zipcode): self
+    {
+        $this->zipcode = $zipcode;
 
         return $this;
     }
