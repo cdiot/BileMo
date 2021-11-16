@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
 
         $client = new Client();
         $client->setCompanyName('Micromania');
-        $client->setMail('contact@micromania.fr');
+        $client->setEMail('contact@micromania.fr');
         $client->setPassword('123456');
         $manager->persist($client);
 
