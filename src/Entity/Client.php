@@ -22,10 +22,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *                  "groups"={"client_details_read"}
  *              }
  *          }  
- *      }
+ *      },
+ *      collectionOperations={}
  * )
  */
-class Client  implements UserInterface, PasswordAuthenticatedUserInterface
+class Client implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -60,7 +61,6 @@ class Client  implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="client")
-     * @Groups({"client_details_read"})
      */
     private $customers;
 
