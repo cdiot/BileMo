@@ -35,10 +35,3 @@ Pour lancer des fixtures tapé les commandes suivantes :
 ```bash
 composer reset
 ```
-
-### Lancer des tests
-Pour lancer des tests tapé les commandes suivantes :
-
-```bash
-composer test
-```
