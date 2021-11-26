@@ -35,3 +35,9 @@ Pour lancer des fixtures tapé les commandes suivantes :
 ```bash
 composer reset
 ```
+
+### Lien vers la documention de l’API
+
+```bash
+https://127.0.0.1:8000/api/
+```
