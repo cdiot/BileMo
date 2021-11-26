@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -17,8 +18,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                  "groups"={"customer_details_read"}
  *              }
  *          },
- *          "put",
- *          "patch",
  *          "delete" 
  *      },
  *      collectionOperations={
@@ -63,7 +62,7 @@ class Customer
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="customers")
      * @Groups({"customer_read","customer_details_read"})
      */
-    private $client;
+    private UserInterface $client;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -130,12 +129,12 @@ class Customer
         return $this;
     }
 
-    public function getClient(): ?Client
+    public function getClient(): UserInterface
     {
         return $this->client;
     }
 
-    public function setClient(?Client $client): self
+    public function setClient(UserInterface $client): self
     {
         $this->client = $client;
 

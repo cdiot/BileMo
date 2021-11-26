@@ -36,9 +36,8 @@ Pour lancer des fixtures tapé les commandes suivantes :
 composer reset
 ```
 
-### Lancer des tests
-Pour lancer des tests tapé les commandes suivantes :
+### Lien vers la documention de l’API
 
 ```bash
-composer test
+https://127.0.0.1:8000/api/
 ```
