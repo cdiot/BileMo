@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Client;
-use App\Entity\Customer;
+use App\Entity\User;
 use App\Entity\Phone;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -51,30 +51,30 @@ class AppFixtures extends Fixture
 
         // create 6 Customer!
         for ($i = 1; $i < 11; $i++) {
-            $customer = new Customer();
-            $customer->setFisrtname($faker->firstName());
-            $customer->setLastname($faker->lastName());
-            $customer->setMail($faker->email());
-            $customer->setClient($client);
-            $customer->setCity($faker->city());
-            $customer->setPhone($faker->numberBetween($min = 0611111111, $max = 0777777777));
-            $customer->setAddress($faker->address());
-            $customer->setZipcode($faker->numberBetween($min = 11111, $max = 99999));
-            $manager->persist($customer);
+            $user = new User();
+            $user->setFisrtname($faker->firstName());
+            $user->setLastname($faker->lastName());
+            $user->setMail($faker->email());
+            $user->setClient($client);
+            $user->setCity($faker->city());
+            $user->setPhone($faker->numberBetween($min = 0611111111, $max = 0777777777));
+            $user->setAddress($faker->address());
+            $user->setZipcode($faker->numberBetween($min = 11111, $max = 99999));
+            $manager->persist($user);
         }
 
         // create 6 Customer!
         for ($i = 1; $i < 11; $i++) {
-            $customer = new Customer();
-            $customer->setFisrtname($faker->firstName());
-            $customer->setLastname($faker->lastName());
-            $customer->setMail($faker->email());
-            $customer->setClient($client2);
-            $customer->setCity($faker->city());
-            $customer->setPhone($faker->numberBetween($min = 611111111, $max = 777777777));
-            $customer->setAddress($faker->address());
-            $customer->setZipcode($faker->numberBetween($min = 11111, $max = 99999));
-            $manager->persist($customer);
+            $user = new User();
+            $user->setFisrtname($faker->firstName());
+            $user->setLastname($faker->lastName());
+            $user->setMail($faker->email());
+            $user->setClient($client2);
+            $user->setCity($faker->city());
+            $user->setPhone($faker->numberBetween($min = 611111111, $max = 777777777));
+            $user->setAddress($faker->address());
+            $user->setZipcode($faker->numberBetween($min = 11111, $max = 99999));
+            $manager->persist($user);
         }
 
         $manager->flush();

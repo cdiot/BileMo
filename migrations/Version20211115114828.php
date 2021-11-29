@@ -14,18 +14,18 @@ final class Version20211115114828 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Update Customer entity';
+        return 'Update User entity';
     }
 
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE customer ADD city VARCHAR(255) NOT NULL, ADD phone INT NOT NULL, ADD address VARCHAR(255) NOT NULL, ADD zipcode INT NOT NULL');
+        $this->addSql('ALTER TABLE user ADD city VARCHAR(255) NOT NULL, ADD phone INT NOT NULL, ADD address VARCHAR(255) NOT NULL, ADD zipcode INT NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE customer DROP city, DROP phone, DROP address, DROP zipcode');
+        $this->addSql('ALTER TABLE user DROP city, DROP phone, DROP address, DROP zipcode');
     }
 }

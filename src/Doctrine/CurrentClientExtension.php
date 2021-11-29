@@ -2,7 +2,7 @@
 
 namespace App\Doctrine;
 
-use App\Entity\Customer;
+use App\Entity\User;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
@@ -48,7 +48,7 @@ class CurrentClientExtension implements QueryCollectionExtensionInterface, Query
     private function addWhere(QueryBuilder $queryBuilder, string $resourceClass)
     {
 
-        if (Customer::class !== $resourceClass || null === $user = $this->security->getUser()) {
+        if (User::class !== $resourceClass || null === $user = $this->security->getUser()) {
             return;
         }
 

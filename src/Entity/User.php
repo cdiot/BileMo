@@ -3,19 +3,19 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\CustomerRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=CustomerRepository::class)
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
  *      itemOperations={
  *          "get"={
  *              "normalization_context"={
- *                  "groups"={"customer_details_read"}
+ *                  "groups"={"user_details_read"}
  *              }
  *          },
  *          "delete" 
@@ -23,44 +23,44 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      collectionOperations={
  *          "get"={
  *              "normalization_context"={
- *                  "groups"={"customer_read"}
+ *                  "groups"={"user_read"}
  *              }
  *          },
  *          "post"       
  *      }
  * )
  */
-class Customer
+class User
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"customer_read","customer_details_read"})
+     * @Groups({"user_read","user_details_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customer_read","customer_details_read"})
+     * @Groups({"user_read","user_details_read"})
      */
     private $fisrtname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customer_read","customer_details_read"})
+     * @Groups({"user_read","user_details_read"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customer_read","customer_details_read"})
+     * @Groups({"user_read","user_details_read"})
      */
     private $mail;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="customers")
-     * @Groups({"customer_read","customer_details_read"})
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="users")
+     * @Groups({"user_read","user_details_read"})
      */
     private UserInterface $client;
 

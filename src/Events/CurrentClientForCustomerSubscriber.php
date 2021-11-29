@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Events;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use App\Entity\Customer;
+use App\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -31,11 +31,11 @@ class CurrentClientForCustomerSubscriber implements EventSubscriberInterface
 
     public function currentClientForCustomer(ViewEvent $event): void
     {
-        $customer = $event->getControllerResult();
+        $user = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if ($customer instanceof Customer && Request::METHOD_POST === $method) {
-            $customer->setClient($this->security->getUser());
+        if ($user instanceof User && Request::METHOD_POST === $method) {
+            $user->setClient($this->security->getUser());
         }
     }
 }

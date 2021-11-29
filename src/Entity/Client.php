@@ -60,13 +60,13 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="client")
      */
-    private $customers;
+    private $users;
 
     public function __construct()
     {
-        $this->customers = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -171,29 +171,29 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Customer[]
+     * @return Collection|User[]
      */
-    public function getCustomers(): Collection
+    public function getUsers(): Collection
     {
-        return $this->customers;
+        return $this->users;
     }
 
-    public function addCustomer(Customer $customer): self
+    public function addCustomer(User $user): self
     {
-        if (!$this->customers->contains($customer)) {
-            $this->customers[] = $customer;
-            $customer->setClient($this);
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setClient($this);
         }
 
         return $this;
     }
 
-    public function removeCustomer(Customer $customer): self
+    public function removeCustomer(User $user): self
     {
-        if ($this->customers->removeElement($customer)) {
+        if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($customer->getClient() === $this) {
-                $customer->setClient(null);
+            if ($user->getClient() === $this) {
+                $user->setClient(null);
             }
         }
 
