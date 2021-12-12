@@ -30,10 +30,10 @@ symfony serve -d
 Vous pouvez configurer l'accès à la base de données dans le fichier .env
 
 ### Lancer les fixtures
-Pour lancer des fixtures tapé les commandes suivantes :
+Pour lancer les fixtures tapé les commandes suivantes :
 
 ```bash
-composer reset
+composer init
 ```
 
 ### Comment ce connecter à l’API
@@ -52,4 +52,10 @@ Il faudra l'indiquer pour chaque ressource.
 
 ```bash
 https://127.0.0.1:8000/api/
+```
+
+### Lien qualité 
+
+```bash
+https://app.codacy.com/gh/cdiot/BileMo/dashboard
 ```
